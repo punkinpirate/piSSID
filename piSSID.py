@@ -1,6 +1,5 @@
 import os
 from fancyBackup import fancyBackup
-from forceOpen import forceOpen
 
 # Get SSID and password from user
 usrSSID = input('Enter SSID (WPA-PSK only!): ')
