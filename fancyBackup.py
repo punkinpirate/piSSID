@@ -23,12 +23,6 @@ def fancyBackup(fileName, pathName):
         print('You removed ./backup/?\n\nYOU HEATHEN!\n\nLet me just make that for you...', end='')
         os.mkdir('./backup/')
         print('... Done!')
-    ## Missing backup file
-    if not os.path.exists(localBackup):
-        print('No backup to overwrite. Creating empty backup...', end='')
-        b=open(localBackup, 'w')
-        b.close()
-        print('... Done!')
 
 
     # Check for existing *.orig backup
