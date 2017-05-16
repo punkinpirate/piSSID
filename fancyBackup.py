@@ -11,7 +11,8 @@ def fancyBackup(fileName, pathName):
     ## Put backup file in a folder and append *.orig to filename
     localBackup = './backup/%s.orig' %(fileName)
 
-####
+
+
     # Error handlers for missing files or directory
     ## Missing source
     if not os.path.exists(origPath):
@@ -28,18 +29,29 @@ def fancyBackup(fileName, pathName):
         b=open(localBackup, 'w')
         b.close()
         print('... Done!')
-####
 
-    # Do real work; open backup to be written, then write to it from source file
-    b=open(localBackup, 'w')
 
-    print('\n\nCopying source file to ./backup...\n\n##################################')
+    # Check for existing *.orig backup
+    if not os.path.exists(localBackup):
+        ## If it backup.orig doesn't exist, write as that name
+        b=open(localBackup, 'w')
+    else:
+        ## Otherwise, look for backup.orig[#], counting up from 0, until a free slot is found
+        i=0
+        while os.path.exists('%s[%d]' %(localBackup, i)):
+            i += 1
+        ## Append backup filename with free number then open file for use
+        localBackup = '%s[%d]' %(localBackup, i)
+        b=open(localBackup, 'w')
+
+    # Write to backup file
+    print('\n\nCopying source file to ./backup...\n\n###')
     with open(origPath, 'r') as f:
         for l in f:
             b.write(l)
-            # Print each line as it's written
-            print('%s' %(l))
+##            # Print each line as it's written
+##            print('%s' %(l))
     b.close()
     f.close()
-    print('##################################\n\nSuccess!')
+    print('###n\nSuccess!')
     return 'Wrote %s from %s\n' %(localBackup, origPath)
