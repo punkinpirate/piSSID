@@ -53,5 +53,5 @@ def fancyBackup(fileName, pathName):
 ##            print('%s' %(l))
     b.close()
     f.close()
-    print('###n\nSuccess!')
+    print('###\n\nSuccess!')
     return 'Wrote %s from %s\n' %(localBackup, origPath)
